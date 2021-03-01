@@ -85,7 +85,7 @@ def check_stop(walker,object):
 
 y_values = np.linspace(0, 1, num=n_size+1)
 fig = plt.figure(figsize=(9, 6))
-axes = fig.subplots(2, 2, sharex = True, sharey = True)
+axes = fig.subplots(3, 3, sharex = True, sharey = True)
 fig.add_subplot(111, frameon=False)
 plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
 plt.grid(False)
@@ -106,6 +106,7 @@ for row in axes:
                     walker = new_walker()
             grid[walker[0]][walker[1]] = 1
         col.pcolormesh(y_values, y_values, grid)
-        col.set_title(r'$p_s = {}$'.format(prob_s))
-plt.savefig("Pictures/MC_tree_prob_list")
+        col.set_title(r'$p_s = {}$'.format(round(prob_s,1)))
+plt.savefig("Pictures/MC_tree_prob_list_9")
 plt.show()
+
