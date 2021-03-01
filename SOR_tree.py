@@ -1,5 +1,5 @@
 import numpy as np
-from C import find_candidates, select_value, calculate_SOR
+from SOR_funcs import find_candidates, select_value, calculate_SOR
 
 
 def one_step(old_grid, omega, eta):
