@@ -1,11 +1,12 @@
 import numpy as np
+from DLA_constants import omega, n_size
 
 
 def find_candidates(grid, y, x):
     if grid[y][x] == 1:
         return False
     no_particles = False
-    #print("YX:",y, x)
+    # print("YX:",y, x)
     for y2 in range(y - 1, y + 2):
         if y2 >= 0 and y2 <= len(grid) - 1:
             if grid[y2][x] == 1:
@@ -17,6 +18,38 @@ def find_candidates(grid, y, x):
     return no_particles
 
 
+def find_neighbours(object_structure):
+    # Return a list of all the possible neighbours
+
+    neighbours = []
+    for j in range(0, n_size):  # Iterate through y
+        for i in range(0, n_size):  # Iterate through x
+            if object_structure[j][i] == 1:
+                continue
+            elif j == n_size - 1:
+                if object_structure[j - 1][i] == 1 or object_structure[j][(i + 1) % n_size] == 1 or\
+                        object_structure[j][i - 1] == 1:
+                    neighbours.append([j, i])
+            elif j == 0:
+                if object_structure[j + 1][i] == 1 or object_structure[j][(i + 1) % n_size] == 1 or\
+                        object_structure[j][i - 1] == 1:
+                    neighbours.append([j, i])
+            elif object_structure[j + 1][i] == 1 or object_structure[j - 1][i] == 1 or \
+                    object_structure[j][(i + 1) % n_size] == 1 or object_structure[j][i - 1] == 1:
+                neighbours.append([j, i])
+    return neighbours
+
+
+def concentration_neighbours(neighbours, matrix_concentration):
+    # create a list with all concentrations from the possible neighbours
+
+    conc = []
+    for i in range(len(neighbours)):
+        concentration_ind = matrix_concentration[neighbours[i][0]][neighbours[i][1]]
+        conc.append(concentration_ind)
+    return conc
+
+
 def select_value(probs):
     options = []
     value = np.random.choice(probs, p=probs)
@@ -26,18 +59,32 @@ def select_value(probs):
     return np.random.choice(options)
 
 
-def calculate_SOR(old_grid, new_grid, y, x, omega):
-    if y == len(old_grid) - 1:
-        return omega / 4 * (new_grid[y - 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) +\
-               (1 - omega) * old_grid[y][x]
-    elif y == 0:
-        return omega / 4 * (old_grid[y + 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) +\
-               (1 - omega) * old_grid[y][x]
-    elif x == 0:
-        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + old_grid[y][x + 1]) +\
-               (1 - omega) * old_grid[y][x]
-    elif x == len(old_grid[0]) - 1:
-        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + new_grid[y][x - 1]) +\
-               (1 - omega) * old_grid[y][x]
-    else:
-        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) + (1 - omega) * old_grid[y][x]
+def initialise_grid():
+    # Initialise the grid with the analytical solution for an n x n grid
+
+    grid = np.zeros(shape=(n_size, n_size))
+    for y in range(n_size):
+        y_value = y / n_size
+        for x in range(n_size):
+            grid[y][x] = y_value
+    return grid
+
+
+def update_SOR(object_structure, concentrations):
+    # Update the concentration matrix with SOR
+
+    global omega
+    grid_this_time = concentrations.copy()
+    for j in range(0, n_size):  # Iterate through y
+        for i in range(0, n_size):  # Iterate through x
+            if j == 0:
+                grid_this_time[j][i] = 0
+            elif j == n_size - 1:
+                grid_this_time[j][i] = 1
+            elif object_structure[j][i] == 1:
+                grid_this_time[j][i] = 0
+            else:
+                neighbour_values = grid_this_time[j - 1][i] + grid_this_time[j + 1][i] + \
+                                   grid_this_time[j][i - 1] + grid_this_time[j][(i + 1) % n_size]
+                grid_this_time[j][i] = omega / 4 * neighbour_values + (1 - omega) * grid_this_time[j][i]
+    return grid_this_time
