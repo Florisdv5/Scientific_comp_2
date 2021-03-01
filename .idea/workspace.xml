@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< Updated upstream
-    <list default="true" id="eb3b46d6-bcfc-4dd5-a172-42a60817b1ea" name="Default Changelist" comment="" />
-=======
     <list default="true" id="1f8fc93c-d217-4414-a264-ac4849c0b488" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DLA_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/DLA_constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Monte_Carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Monte_Carlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/MC_tree_prob_list.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/MC_tree_prob_list.png" afterDir="false" />
     </list>
->>>>>>> Stashed changes
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -24,23 +22,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-<<<<<<< Updated upstream
-  <component name="ProjectId" id="1p1Ij3kWWtSUYq4vmX39DP6eeY4" />
-=======
   <component name="ProjectId" id="1p9jmGghaH5vA3DRo6cQNzmoBFp" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
->>>>>>> Stashed changes
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-<<<<<<< Updated upstream
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-  </component>
-  <component name="RunManager">
-=======
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Scientific_Computing/Comparing_methods.py" />
   </component>
@@ -108,7 +97,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
->>>>>>> Stashed changes
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Scientific_comp_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -130,8 +118,6 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-<<<<<<< Updated upstream
-=======
     <recent_temporary>
       <list>
         <item itemvalue="Python.Monte_Carlo (1)" />
@@ -139,26 +125,10 @@
         <item itemvalue="Python.Monte_Carlo" />
       </list>
     </recent_temporary>
->>>>>>> Stashed changes
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-<<<<<<< Updated upstream
-      <changelist id="eb3b46d6-bcfc-4dd5-a172-42a60817b1ea" name="Default Changelist" comment="" />
-      <created>1614344300786</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1614344300786</updated>
-    </task>
-    <servers />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="385" y="196" key="search.everywhere.popup" timestamp="1614608906191">
-      <screen x="0" y="0" width="1440" height="900" />
-    </state>
-    <state x="385" y="196" key="search.everywhere.popup/0.0.1440.900@0.0.1440.900" timestamp="1614608906191" />
-=======
       <changelist id="1f8fc93c-d217-4414-a264-ac4849c0b488" name="Default Changelist" comment="" />
       <created>1614602357658</created>
       <option name="number" value="Default" />
@@ -177,6 +147,5 @@
         </entry>
       </map>
     </option>
->>>>>>> Stashed changes
   </component>
 </project>
