@@ -64,3 +64,4 @@ for i in tqdm(range(steps)):
 
 plt.matshow(grid)
 plt.show()
+plt.savefig("Pictures/MC_tree")
