@@ -107,6 +107,6 @@ for row in axes:
             grid[walker[0]][walker[1]] = 1
         col.pcolormesh(y_values, y_values, grid)
         col.set_title(r'$p_s = {}$'.format(round(prob_s,1)))
-plt.savefig("Pictures/MC_tree_prob_list_9")
+# plt.savefig("Pictures/MC_tree_prob_list_9")
 plt.show()
 
