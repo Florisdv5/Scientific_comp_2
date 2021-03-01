@@ -1,7 +1,6 @@
 import numpy as np
 
 
-
 def find_candidates(grid, y, x):
     if grid[y][x] == 1:
         return False
@@ -17,6 +16,7 @@ def find_candidates(grid, y, x):
                 return True
     return no_particles
 
+
 def select_value(probs):
     options = []
     value = np.random.choice(probs, p=probs)
@@ -25,16 +25,19 @@ def select_value(probs):
             options.append(x)
     return np.random.choice(options)
 
+
 def calculate_SOR(old_grid, new_grid, y, x, omega):
     if y == len(old_grid) - 1:
-        return omega / 4 * (new_grid[y - 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) + (1 - omega) * old_grid[y][x]
+        return omega / 4 * (new_grid[y - 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) +\
+               (1 - omega) * old_grid[y][x]
     elif y == 0:
-        return omega / 4 * (old_grid[y + 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) + (1 - omega) * old_grid[y][x]
+        return omega / 4 * (old_grid[y + 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) +\
+               (1 - omega) * old_grid[y][x]
     elif x == 0:
-        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + old_grid[y][x + 1]) + (
-                1 - omega) * old_grid[y][x]
+        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + old_grid[y][x + 1]) +\
+               (1 - omega) * old_grid[y][x]
     elif x == len(old_grid[0]) - 1:
-        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + new_grid[y][x - 1]) + (
-                1 - omega) * old_grid[y][x]
+        return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + new_grid[y][x - 1]) +\
+               (1 - omega) * old_grid[y][x]
     else:
         return omega / 4 * (old_grid[y + 1][x] + new_grid[y - 1][x] + old_grid[y][x + 1] + new_grid[y][x - 1]) + (1 - omega) * old_grid[y][x]
