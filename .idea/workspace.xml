@@ -5,7 +5,12 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DLA_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/DLA_constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Monte_Carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Monte_Carlo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SOR_funcs.py" beforeDir="false" afterPath="$PROJECT_DIR$/SOR_funcs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/DLA_eta_0.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/DLA_eta_0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/DLA_eta_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/DLA_eta_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/DLA_eta_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/DLA_eta_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/MC_tree_prob_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/MC_tree_prob_list.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/MC_tree_prob_list_600.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/MC_tree_prob_list_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/MC_tree_prob_list_9_600.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,9 +37,9 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Scientific_Computing/Scripts/Omega_different_N.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../agent_based_modelling/civil_violence/sobol_plot.py" />
   </component>
-  <component name="RunManager" selected="Python.tree">
+  <component name="RunManager" selected="Python.Monte_Carlo (1)">
     <configuration name="DLA_constants" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Scientific_comp_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -165,8 +170,8 @@
       <list>
         <item itemvalue="Python.tree" />
         <item itemvalue="Python.Monte_Carlo (1)" />
-        <item itemvalue="Python.SOR_tree" />
         <item itemvalue="Python.DLA_constants" />
+        <item itemvalue="Python.SOR_tree" />
         <item itemvalue="Python.Monte_Carlo" />
       </list>
     </recent_temporary>
