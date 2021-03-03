@@ -20,10 +20,12 @@ def find_candidates(grid, y, x):
 
 def find_neighbours(object_structure):
     # Return a list of all the possible neighbours
-
+    top_reached = False
     neighbours = []
     for j in range(0, n_size):  # Iterate through y
         for i in range(0, n_size):  # Iterate through x
+            if object_structure[n_size - 1][i] == 1:
+                top_reached = True
             if object_structure[j][i] == 1:
                 continue
             elif j == n_size - 1:
@@ -37,7 +39,7 @@ def find_neighbours(object_structure):
             elif object_structure[j + 1][i] == 1 or object_structure[j - 1][i] == 1 or \
                     object_structure[j][(i + 1) % n_size] == 1 or object_structure[j][i - 1] == 1:
                 neighbours.append([j, i])
-    return neighbours
+    return neighbours, top_reached
 
 
 def concentration_neighbours(neighbours, matrix_concentration):
@@ -74,6 +76,24 @@ def update_SOR(object_structure, concentrations):
     # Update the concentration matrix with SOR
 
     global omega
+    grid_this_time = concentrations.copy()
+    for j in range(0, n_size):  # Iterate through y
+        for i in range(0, n_size):  # Iterate through x
+            if j == 0:
+                grid_this_time[j][i] = 0
+            elif j == n_size - 1:
+                grid_this_time[j][i] = 1
+            elif object_structure[j][i] == 1:
+                grid_this_time[j][i] = 0
+            else:
+                neighbour_values = grid_this_time[j - 1][i] + grid_this_time[j + 1][i] + \
+                                   grid_this_time[j][i - 1] + grid_this_time[j][(i + 1) % n_size]
+                grid_this_time[j][i] = omega / 4 * neighbour_values + (1 - omega) * grid_this_time[j][i]
+    return grid_this_time
+
+def update_SOR_omega(object_structure, concentrations, omega):
+    # Update the concentration matrix with SOR
+
     grid_this_time = concentrations.copy()
     for j in range(0, n_size):  # Iterate through y
         for i in range(0, n_size):  # Iterate through x
