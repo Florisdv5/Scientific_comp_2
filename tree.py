@@ -83,8 +83,8 @@ fig.clear(True)
 fig = plt.figure(figsize=(9, 6))
 plt.plot(eta_list, step_list)
 plt.xlabel('$\eta$')
-plt.ylabel('Amount of steps')
-plt.savefig("Pictures/Amount_of_steps_top")
+plt.ylabel('Amount of steps', size = 15)
+plt.savefig("Pictures/Amount_of_steps_top", size = 15)
 plt.show()
 
 
