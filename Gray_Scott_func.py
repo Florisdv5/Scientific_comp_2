@@ -1,46 +1,57 @@
-from RDS_constants import n_size, initial_u, initial_v, D_u, D_v, omega, f_u, k
+from RDS_constants import n_size, initial_u, initial_v, D_u, D_v, omega, constant_diff_u, constant_diff_v
 import numpy as np
+import random
 
 
-def initialise_conc(fluid):
+def initialise_conc(fluid, noise=False):
+    # Create the grid and fill the grid with the initial value, depending on the fluid
+    # Also add if specified noise to the grid (noise max is 1/5 * initial concentrations)
+
     if fluid == "U":
-        grid = np.full(shape=(n_size, n_size), fill_value=initial_u)
+        if not noise:
+            grid = np.full(shape=(n_size, n_size), fill_value=initial_u)
+        else:
+            grid = np.zeros(shape=(n_size, n_size))
+            for y in range(len(grid)):
+                for x in range(len(grid)):
+                    if noise:
+                        grid[y][x] = initial_u + initial_u * random.random()
+                    else:
+                        grid[y][x] = initial_u
     elif fluid == "V":
         grid = np.zeros(shape=(n_size, n_size))
         for y in range(len(grid)):
             for x in range(len(grid)):
-                if 1/3*n_size < y < 2/3*n_size and 1/3*n_size < x < 2/3*n_size:
-                    grid[y][x] = initial_v
+                if 1 / 3 * n_size < y < 2 / 3 * n_size and 1 / 3 * n_size < x < 2 / 3 * n_size:
+                    if noise:
+                        grid[y][x] = initial_v + initial_v * random.random()
+                    else:
+                        grid[y][x] = initial_v
     else:
         raise ValueError('Fluid does not exist.')
     return grid
 
 
-def update_SOR(concentrations, j, i, fluid):
-    # Update the concentration with SOR
+def neighbour_conc(concentrations, j, i):
+    # give the sum of the concentration of the neighbours
 
-    if fluid == "U":
-        if j == n_size - 1:
-            nabla_term = 1
-        else:
-            neighbour_values = concentrations[j - 1][i] + concentrations[j + 1][i] + \
-                               concentrations[j][i - 1] + concentrations[j][(i + 1) % n_size]
-            nabla_term = omega / 4 * neighbour_values + (1 - omega) * concentrations[j][i]
-    if fluid == "V":
-        neighbour_values = concentrations[j - 1][i] + concentrations[(j + 1) % n_size][i] + \
-                           concentrations[j][i - 1] + concentrations[j][(i + 1) % n_size]
-        nabla_term = omega / 4 * neighbour_values + (1 - omega) * concentrations[j][i]
-    return nabla_term
+    neighbour_values = concentrations[j - 1][i] + concentrations[(j + 1) % n_size][i] + \
+                       concentrations[j][i - 1] + concentrations[j][(i + 1) % n_size]
+    return neighbour_values
 
 
-def update_conc(concentration_u, concentration_v):
+def update_conc(concentration_u, concentration_v, f_u, k):
     # Let the concentrations interact and update them
 
     for y in range(len(concentration_u)):
         for x in range(len(concentration_u)):
-            reaction_uv = concentration_u[y][x]*concentration_v[y][x]**2
-            nabla_term_u = update_SOR(concentration_u, y, x, "U")
-            nabla_term_v = update_SOR(concentration_v, y, x, "V")
-            concentration_u[y][x] = D_u * nabla_term_u + reaction_uv + f_u * (1 - concentration_u[y][x])
-            concentration_v[y][x] = D_v * nabla_term_v + reaction_uv - (f_u + k) * concentration_v[y][x]
+            reaction_uv = concentration_u[y][x] * concentration_v[y][x] ** 2
+            neighbours_u = neighbour_conc(concentration_u, y, x)
+            neighbours_v = neighbour_conc(concentration_v, y, x)
+            concentration_u[y][x] = concentration_u[y][x] + constant_diff_u * (
+                    neighbours_u - 4 * concentration_u[y][x]) - \
+                                    reaction_uv + f_u * (1 - concentration_u[y][x])
+            concentration_v[y][x] = concentration_v[y][x] + constant_diff_v * (
+                    neighbours_v - 4 * concentration_v[y][x]) + \
+                                    reaction_uv - (f_u + k) * concentration_v[y][x]
     return concentration_u, concentration_v
