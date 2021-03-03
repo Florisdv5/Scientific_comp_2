@@ -52,7 +52,7 @@ for eta_i in range(len(eta_list)):
 
 fig = plt.figure(figsize=(9, 6))
 plt.plot(eta_list, lowest_omega_list)
-plt.xlabel('$\eta$')
-plt.ylabel('Ideal $\omega$')
+plt.xlabel('$\eta$', size = 15)
+plt.ylabel('Ideal $\omega$', size = 15)
 #plt.savefig("Pictures/Amount_of_steps_top")
 plt.show()
