@@ -3,6 +3,7 @@ import numpy as np
 import random
 import matplotlib.pyplot as plt
 from tqdm import tqdm
+import time
 
 
 def new_walker():
@@ -106,33 +107,75 @@ def stop_grid(structure):
 
 # Simulation for question C
 
-y_values = np.linspace(0, 1, num=n_size + 1)
-fig = plt.figure(figsize=(9, 6))
-axes = fig.subplots(3, 3, sharex=True, sharey=True)
-fig.add_subplot(111, frameon=False)
-plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-plt.grid(False)
-plt.xlabel("X-value", size=15)
-plt.ylabel("Y-value", size=15)
-axes_num = 0
-for row in tqdm(axes):
-    for col in tqdm(row):
-        prob_s = prob_s_list[axes_num]
-        grid = np.zeros(shape=(n_size, n_size))
-        grid[0][int(n_size / 2)] = 1
-        axes_num += 1
-        i = 0
-        while i < steps and stop_grid(grid) == False:
-            # for i in tqdm(range(steps)):
-            walker = new_walker()
-            while check_stop(walker, grid) == 0:
-                walker = step(walker, grid)
-                if walker[0] < 0 or walker[0] > n_size - 1:
-                    walker = new_walker()
-            grid[walker[0]][walker[1]] = 1
-            # print(i)
-            i += 1
-        col.pcolormesh(y_values, y_values, grid)
-        col.set_title(r'$p_s = {}$, steps = {}'.format(round(prob_s, 1), i))
-plt.savefig("Pictures/MC_tree_prob_list_9")
-plt.show()
+# y_values = np.linspace(0, 1, num=n_size + 1)
+# fig = plt.figure(figsize=(9, 6))
+# axes = fig.subplots(3, 3, sharex=True, sharey=True)
+# fig.add_subplot(111, frameon=False)
+# plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+# plt.grid(False)
+# plt.xlabel("X-value", size=15)
+# plt.ylabel("Y-value", size=15)
+# axes_num = 0
+# for row in tqdm(axes):
+#     for col in tqdm(row):
+#         prob_s = prob_s_list[axes_num]
+#         grid = np.zeros(shape=(n_size, n_size))
+#         grid[0][int(n_size / 2)] = 1
+#         axes_num += 1
+#         i = 0
+#         while i < steps and not stop_grid(grid):
+#             # for i in tqdm(range(steps)):
+#             walker = new_walker()
+#             while check_stop(walker, grid) == 0:
+#                 walker = step(walker, grid)
+#                 if walker[0] < 0 or walker[0] > n_size - 1:
+#                     walker = new_walker()
+#             grid[walker[0]][walker[1]] = 1
+#             # print(i)
+#             i += 1
+#         col.pcolormesh(y_values, y_values, grid)
+#         col.set_title(r'$p_s = {}$'.format(round(prob_s, 1)))
+# plt.savefig("Pictures/MC_tree_prob_list_9_2")
+# plt.show()
+
+
+# Data for CI
+#
+# step_list_prob_s = [[], [], [], [], [], [], [], [], []]
+# for i in tqdm(range(10)):
+#     for prob_s_value in range(9):
+#         prob_s = prob_s_list[prob_s_value]
+#         grid = np.zeros(shape=(n_size, n_size))
+#         grid[0][int(n_size / 2)] = 1
+#         i = 0
+#         while not stop_grid(grid) and i < steps:
+#             walker = new_walker()
+#             while check_stop(walker, grid) == 0:
+#                 walker = step(walker, grid)
+#                 if walker[0] < 0 or walker[0] > n_size - 1:
+#                     walker = new_walker()
+#             grid[walker[0]][walker[1]] = 1
+#             i += 1
+#         step_list_prob_s[prob_s_value].append(i)
+#
+# path = 'Archives/saved_step_list_prob_s_{0}.npy'.format(int(time.time()))
+# with open(path, 'ab') as f:
+#     np.save(f, step_list_prob_s)
+
+step_list_prob_s = []
+for i in tqdm(range(10)):
+    # for prob_s_value in range(9):
+    prob_s = 1
+    grid = np.zeros(shape=(n_size, n_size))
+    grid[0][int(n_size / 2)] = 1
+    i = 0
+    while not stop_grid(grid) and i < steps:
+        walker = new_walker()
+        while check_stop(walker, grid) == 0:
+            walker = step(walker, grid)
+            if walker[0] < 0 or walker[0] > n_size - 1:
+                walker = new_walker()
+        grid[walker[0]][walker[1]] = 1
+        i += 1
+    step_list_prob_s.append(i)
+print(step_list_prob_s)
