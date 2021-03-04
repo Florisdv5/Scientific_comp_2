@@ -25,9 +25,10 @@ def one_step_omega(matrix_structure, matrix_concentration,omega):
     matrix_structure[added_neighbour[0]][added_neighbour[1]] = 1
     return matrix_structure, matrix_concentration, top_reached
 
-omega_list = np.linspace(0, 2, 10)
+omega_list = np.linspace(0.5, 1.8, 8)
 step_list = np.zeros(shape=(len(eta_list), len(omega_list)))
 for eta_i in range(len(eta_list)):
+    print(eta_i)
     for omega_i in range(len(omega_list)):
         eta = eta_list[eta_i]
         omega = omega_list[omega_i]
@@ -40,6 +41,7 @@ for eta_i in range(len(eta_list)):
             matrix_structure, matrix_concentration, top_reached = one_step_omega(matrix_structure, matrix_concentration,omega)
             step += 1
         step_list[eta_i][omega_i] = step
+        print(omega_i)
 
 lowest_omega_list = [0]*len(eta_list)
 
@@ -54,5 +56,6 @@ fig = plt.figure(figsize=(9, 6))
 plt.plot(eta_list, lowest_omega_list)
 plt.xlabel('$\eta$', size = 15)
 plt.ylabel('Ideal $\omega$', size = 15)
-#plt.savefig("Pictures/Amount_of_steps_top")
+plt.grid(True)
+plt.savefig("Pictures/ideal_omega")
 plt.show()
