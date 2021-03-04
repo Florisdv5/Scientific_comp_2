@@ -65,57 +65,74 @@ def check_stop(walker, object):
     return stop
 
 
-# Simulation for question B
+def stop_grid(structure):
+    top_reached = False
+    for j in range(0, n_size):  # Iterate through y
+        for i in range(0, n_size):  # Iterate through x
+            if structure[n_size - 1][i] == 1:
+                top_reached = True
+    return top_reached
 
-grid = np.zeros(shape=(n_size, n_size))
-grid[0][int(n_size / 2)] = 1
-for i in tqdm(range(steps)):
-    walker = new_walker()
-    while check_stop(walker, grid) == 0:
-        walker = step(walker, grid)
-        if walker[0] < 0 or walker[0] > n_size - 1:
-            walker = new_walker()
-    grid[walker[0]][walker[1]] = 1
-y_values = np.linspace(0, 1, num=n_size + 1)
-fig = plt.figure()
-ax = fig.add_subplot(111, axisbelow=True)
-ax.pcolormesh(y_values, y_values, grid)
-ax.set_xlabel("X-value", size=20)
-ax.set_ylabel("Y-value", size=20)
-for tick in ax.xaxis.get_major_ticks():
-    tick.label.set_fontsize(15)
-for tick in ax.yaxis.get_major_ticks():
-    tick.label.set_fontsize(15)
-plt.grid(False)
-plt.tight_layout()
-plt.savefig("Pictures/MC_tree_prob_{}".format(prob_s))
-plt.show()
+
+# Simulation for question B
+#
+# grid = np.zeros(shape=(n_size, n_size))
+# grid[0][int(n_size / 2)] = 1
+# i = 0
+# while i < steps and stop_grid(grid) == False:
+#     # for i in tqdm(range(steps)):
+#     walker = new_walker()
+#     while check_stop(walker, grid) == 0:
+#         walker = step(walker, grid)
+#         if walker[0] < 0 or walker[0] > n_size - 1:
+#             walker = new_walker()
+#     grid[walker[0]][walker[1]] = 1
+#     i += 1
+#     print(i)
+# y_values = np.linspace(0, 1, num=n_size + 1)
+# fig = plt.figure()
+# ax = fig.add_subplot(111, axisbelow=True)
+# ax.pcolormesh(y_values, y_values, grid)
+# ax.set_xlabel("X-value", size=20)
+# ax.set_ylabel("Y-value", size=20)
+# for tick in ax.xaxis.get_major_ticks():
+#     tick.label.set_fontsize(15)
+# for tick in ax.yaxis.get_major_ticks():
+#     tick.label.set_fontsize(15)
+# plt.grid(False)
+# plt.tight_layout()
+# plt.savefig("Pictures/MC_tree_prob_{}".format(prob_s))
+# plt.show()
 
 # Simulation for question C
 
-# y_values = np.linspace(0, 1, num=n_size+1)
-# fig = plt.figure(figsize=(9, 6))
-# axes = fig.subplots(2, 2, sharex = True, sharey = True)
-# fig.add_subplot(111, frameon=False)
-# plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-# plt.grid(False)
-# plt.xlabel("X-value", size = 15)
-# plt.ylabel("Y-value", size = 15)
-# axes_num = 0
-# for row in axes:
-#     for col in row:
-#         prob_s = prob_s_list[axes_num]
-#         grid = np.zeros(shape=(n_size, n_size))
-#         grid[0][int(n_size / 2)] = 1
-#         axes_num += 1
-#         for i in tqdm(range(steps)):
-#             walker = new_walker()
-#             while check_stop(walker, grid) == 0:
-#                 walker = step(walker, grid)
-#                 if walker[0] < 0 or walker[0] > n_size-1:
-#                     walker = new_walker()
-#             grid[walker[0]][walker[1]] = 1
-#         col.pcolormesh(y_values, y_values, grid)
-#         col.set_title(r'$p_s = {}$'.format(round(prob_s,1)))
-# plt.savefig("Pictures/MC_tree_prob_list_4")
-# plt.show()
+y_values = np.linspace(0, 1, num=n_size + 1)
+fig = plt.figure(figsize=(9, 6))
+axes = fig.subplots(3, 3, sharex=True, sharey=True)
+fig.add_subplot(111, frameon=False)
+plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+plt.grid(False)
+plt.xlabel("X-value", size=15)
+plt.ylabel("Y-value", size=15)
+axes_num = 0
+for row in tqdm(axes):
+    for col in tqdm(row):
+        prob_s = prob_s_list[axes_num]
+        grid = np.zeros(shape=(n_size, n_size))
+        grid[0][int(n_size / 2)] = 1
+        axes_num += 1
+        i = 0
+        while i < steps and stop_grid(grid) == False:
+            # for i in tqdm(range(steps)):
+            walker = new_walker()
+            while check_stop(walker, grid) == 0:
+                walker = step(walker, grid)
+                if walker[0] < 0 or walker[0] > n_size - 1:
+                    walker = new_walker()
+            grid[walker[0]][walker[1]] = 1
+            # print(i)
+            i += 1
+        col.pcolormesh(y_values, y_values, grid)
+        col.set_title(r'$p_s = {}$, steps = {}'.format(round(prob_s, 1), i))
+plt.savefig("Pictures/MC_tree_prob_list_9")
+plt.show()
