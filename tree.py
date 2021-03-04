@@ -8,15 +8,15 @@ import time
 
 def one_step(matrix_structure, matrix_concentration):
     difference = 1
-    while difference > epsilon:
+    iterations = -1
+    while difference > epsilon and iterations < 100:
         old_matrix_concentration = matrix_concentration.copy()
         matrix_concentration = update_SOR(matrix_structure, matrix_concentration)
         difference = max_difference(matrix_concentration, old_matrix_concentration)
-        # print(difference)
-    # print("YEE")
+        iterations += 1
+
     neighbours, top_reached = find_neighbours(matrix_structure)
     neighbours_conc = concentration_neighbours(neighbours, matrix_concentration)
-
     sum_candidates_conc = 0
     for i in range(len(neighbours_conc)):
         sum_candidates_conc += neighbours_conc[i] ** eta
@@ -32,28 +32,28 @@ def one_step(matrix_structure, matrix_concentration):
 
 # Question B
 
-y_values = np.linspace(0, 1, num=n_size + 1)
-matrix_structure = np.zeros(shape=(n_size, n_size))
-matrix_structure[0][int(n_size / 2)] = 1
-matrix_concentration = initialise_grid()
-step = 0
-top_reached = False
-while step < steps and top_reached == False:
-    matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
-    step += 1
-print(step)
-fig = plt.figure()
-ax = fig.add_subplot(111, axisbelow=True)
-ax.pcolormesh(y_values, y_values, matrix_structure)
-ax.set_xlabel("X-value", size=20)
-ax.set_ylabel("Y-value", size=20)
-for tick in ax.xaxis.get_major_ticks():
-    tick.label.set_fontsize(15)
-for tick in ax.yaxis.get_major_ticks():
-    tick.label.set_fontsize(15)
-plt.tight_layout()
-plt.savefig("Pictures/DLA_eta_{}".format(eta))
-plt.show()
+# y_values = np.linspace(0, 1, num=n_size + 1)
+# matrix_structure = np.zeros(shape=(n_size, n_size))
+# matrix_structure[0][int(n_size / 2)] = 1
+# matrix_concentration = initialise_grid()
+# step = 0
+# top_reached = False
+# while step < steps and top_reached == False:
+#     matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
+#     step += 1
+# print(step)
+# fig = plt.figure()
+# ax = fig.add_subplot(111, axisbelow=True)
+# ax.pcolormesh(y_values, y_values, matrix_structure)
+# ax.set_xlabel("X-value", size=20)
+# ax.set_ylabel("Y-value", size=20)
+# for tick in ax.xaxis.get_major_ticks():
+#     tick.label.set_fontsize(15)
+# for tick in ax.yaxis.get_major_ticks():
+#     tick.label.set_fontsize(15)
+# plt.tight_layout()
+# plt.savefig("Pictures/DLA_eta_{}".format(eta))
+# plt.show()
 
 # Question A
 
@@ -98,19 +98,19 @@ plt.show()
 
 # Data for CI
 
-# step_list_etas = [[], [], [], [], [], [], [], [], []]
-# for i in tqdm(range(10)):
-#     for eta_values in range(9):
-#         eta = eta_list[eta_values]
-#         matrix_structure = np.zeros(shape=(n_size, n_size))
-#         matrix_structure[0][int(n_size / 2)] = 1
-#         matrix_concentration = initialise_grid()
-#         step = 0
-#         top_reached = False
-#         while not top_reached and step < steps:
-#             matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
-#             step += 1
-#         step_list_etas[eta_values].append(step)
-# path = 'Archives/saved_step_list_eta_{0}.npy'.format(int(time.time()))
-# with open(path, 'ab') as f:
-#     np.save(f, step_list_etas)
+step_list_etas = [[], [], [], [], [], [], [], [], []]
+for i in tqdm(range(10)):
+    for eta_values in range(9):
+        eta = eta_list[eta_values]
+        matrix_structure = np.zeros(shape=(n_size, n_size))
+        matrix_structure[0][int(n_size / 2)] = 1
+        matrix_concentration = initialise_grid()
+        step = 0
+        top_reached = False
+        while not top_reached and step < steps:
+            matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
+            step += 1
+        step_list_etas[eta_values].append(step)
+path = 'Archives/saved_step_list_eta_{0}.npy'.format(int(time.time()))
+with open(path, 'ab') as f:
+    np.save(f, step_list_etas)
