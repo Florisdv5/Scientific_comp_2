@@ -13,8 +13,8 @@ def statistics_list(given_list):
     for list_value in range(len(given_list)):
         mean_list.append(statistics.mean(given_list[list_value]))
         sd_list.append(statistics.stdev(given_list[list_value]))
-        lower_bound_list.append(mean_list[list_value] - 1.96 * sd_list[list_value] / math.sqrt(len(given_list[0])))
-        upper_bound_list.append(mean_list[list_value] + 1.96 * sd_list[list_value] / math.sqrt(len(given_list[0])))
+        lower_bound_list.append(mean_list[list_value] - 1.96 * sd_list[list_value] / math.sqrt(len(given_list[list_value])))
+        upper_bound_list.append(mean_list[list_value] + 1.96 * sd_list[list_value] / math.sqrt(len(given_list[list_value])))
     return mean_list, sd_list, lower_bound_list, upper_bound_list
 
 
@@ -47,7 +47,9 @@ def figure_CI(list_given, reference_list, save_fig=False, path_given="Pictures/f
 path = 'Archives/saved_step_list_prob_s_1614865598.npy'
 with open(path, 'rb') as f:
     step_list_prob_s = np.load(f, allow_pickle=True)[()]
-step_list_prob_s.append()
-prob_s_list.append(1)
+# new_array = np.array([[690, 845, 682, 804, 840, 780, 978, 682, 862, 916]])
+# step_list_prob_s = np.concatenate((step_list_prob_s, new_array), axis=0)
+# print(step_list_prob_s)
+# prob_s_list.append(1)
 figure_CI(step_list_prob_s, prob_s_list, save_fig=True, path_given="figure_step_list_CI_prob_s_with_1",
           x_label=r'$p_s$')
