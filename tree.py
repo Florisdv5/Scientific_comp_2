@@ -12,8 +12,8 @@ def one_step(matrix_structure, matrix_concentration):
         old_matrix_concentration = matrix_concentration.copy()
         matrix_concentration = update_SOR(matrix_structure, matrix_concentration)
         difference = max_difference(matrix_concentration, old_matrix_concentration)
-        print(difference)
-    print("YEE")
+        # print(difference)
+    # print("YEE")
     neighbours, top_reached = find_neighbours(matrix_structure)
     neighbours_conc = concentration_neighbours(neighbours, matrix_concentration)
 
@@ -31,62 +31,62 @@ def one_step(matrix_structure, matrix_concentration):
 
 
 # Question B
-#
-# y_values = np.linspace(0, 1, num=n_size + 1)
-# matrix_structure = np.zeros(shape=(n_size, n_size))
-# matrix_structure[0][int(n_size / 2)] = 1
-# matrix_concentration = initialise_grid()
-# step = 0
-# top_reached = False
-# while step < steps and top_reached == False:
-#     matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
-#     step += 1
-# print(step)
-# fig = plt.figure()
-# ax = fig.add_subplot(111, axisbelow=True)
-# ax.pcolormesh(y_values, y_values, matrix_structure)
-# ax.set_xlabel("X-value", size=20)
-# ax.set_ylabel("Y-value", size=20)
-# for tick in ax.xaxis.get_major_ticks():
-#     tick.label.set_fontsize(15)
-# for tick in ax.yaxis.get_major_ticks():
-#     tick.label.set_fontsize(15)
-# plt.tight_layout()
-# plt.savefig("Pictures/DLA_eta_{}".format(eta))
-# plt.show()
+
+y_values = np.linspace(0, 1, num=n_size + 1)
+matrix_structure = np.zeros(shape=(n_size, n_size))
+matrix_structure[0][int(n_size / 2)] = 1
+matrix_concentration = initialise_grid()
+step = 0
+top_reached = False
+while step < steps and top_reached == False:
+    matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
+    step += 1
+print(step)
+fig = plt.figure()
+ax = fig.add_subplot(111, axisbelow=True)
+ax.pcolormesh(y_values, y_values, matrix_structure)
+ax.set_xlabel("X-value", size=20)
+ax.set_ylabel("Y-value", size=20)
+for tick in ax.xaxis.get_major_ticks():
+    tick.label.set_fontsize(15)
+for tick in ax.yaxis.get_major_ticks():
+    tick.label.set_fontsize(15)
+plt.tight_layout()
+plt.savefig("Pictures/DLA_eta_{}".format(eta))
+plt.show()
 
 # Question A
 
-y_values = np.linspace(0, 1, num=n_size + 1)
-fig = plt.figure(figsize=(9, 6))
-axes = fig.subplots(3, 3, sharex=True, sharey=True)
-fig.add_subplot(111, frameon=False)
-plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-plt.grid(False)
-plt.xlabel("X-value", size=15)
-plt.ylabel("Y-value", size=15)
-axes_num = 0
-step_list = []
-for row in tqdm(axes):
-    for col in tqdm(row):
-        eta = eta_list[axes_num]
-        matrix_structure = np.zeros(shape=(n_size, n_size))
-        matrix_structure[0][int(n_size / 2)] = 1
-        matrix_concentration = initialise_grid()
-        step = 0
-        top_reached = False
-        while not top_reached and step < steps:
-            matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
-            step += 1
-        step_list.append(step)
-        axes_num += 1
-        print(eta)
-        col.pcolormesh(y_values, y_values, matrix_structure)
-        col.set_title(r'$\eta = {}$'.format(round(eta, 3)))
-
-print(step_list)
-plt.savefig("Pictures/DLA_eta_list_9_2")
-plt.show()
+# y_values = np.linspace(0, 1, num=n_size + 1)
+# fig = plt.figure(figsize=(9, 6))
+# axes = fig.subplots(3, 3, sharex=True, sharey=True)
+# fig.add_subplot(111, frameon=False)
+# plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+# plt.grid(False)
+# plt.xlabel("X-value", size=15)
+# plt.ylabel("Y-value", size=15)
+# axes_num = 0
+# step_list = []
+# for row in tqdm(axes):
+#     for col in tqdm(row):
+#         eta = eta_list[axes_num]
+#         matrix_structure = np.zeros(shape=(n_size, n_size))
+#         matrix_structure[0][int(n_size / 2)] = 1
+#         matrix_concentration = initialise_grid()
+#         step = 0
+#         top_reached = False
+#         while not top_reached and step < steps:
+#             matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
+#             step += 1
+#         step_list.append(step)
+#         axes_num += 1
+#         print(eta)
+#         col.pcolormesh(y_values, y_values, matrix_structure)
+#         col.set_title(r'$\eta = {}$'.format(round(eta, 3)))
+#
+# print(step_list)
+# plt.savefig("Pictures/DLA_eta_list_9_2")
+# plt.show()
 # # fig.clear(True)
 # fig = plt.figure(figsize=(9, 6))
 # plt.plot(eta_list, step_list)
