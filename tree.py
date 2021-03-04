@@ -8,12 +8,11 @@ import time
 
 def one_step(matrix_structure, matrix_concentration):
     difference = 1
-    while difference > epsilon:
+    while difference > epsilon and iterations < 100:
         old_matrix_concentration = matrix_concentration.copy()
         matrix_concentration = update_SOR(matrix_structure, matrix_concentration)
         difference = max_difference(matrix_concentration, old_matrix_concentration)
-        print(difference)
-    print("YEE")
+        iterations += 1
     neighbours, top_reached = find_neighbours(matrix_structure)
     neighbours_conc = concentration_neighbours(neighbours, matrix_concentration)
 
