@@ -8,3 +8,4 @@ prob_s_list = np.linspace(0.1, 0.9, 9)
 omega = 1
 eta = 1
 eta_list = np.linspace(0,2, 9)
+epsilon = 10**-4

@@ -91,6 +91,20 @@ def update_SOR(object_structure, concentrations):
                 grid_this_time[j][i] = omega / 4 * neighbour_values + (1 - omega) * grid_this_time[j][i]
     return grid_this_time
 
+
+def max_difference(list1, list2):
+    global epsilon
+    if len(list1) != len(list2):
+        ValueError("Lists must have the same size")
+    max_dif = 0
+    for i in range(len(list1)):
+        for j in range(len(list1[i])):
+            # print(list2[i] - list1[i])
+            if abs(list2[i][j] - list1[i][j]) > max_dif:
+                max_dif = abs(list2[i][j] - list1[i][j])
+    return max_dif
+
+
 def update_SOR_omega(object_structure, concentrations, omega):
     # Update the concentration matrix with SOR
 
