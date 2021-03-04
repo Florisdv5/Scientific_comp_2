@@ -2,13 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1f8fc93c-d217-4414-a264-ac4849c0b488" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/CI.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Pictures/DLA_eta_1_stopped_after_1060_new.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gray_Scott.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gray_Scott.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Monte_Carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/Monte_Carlo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pictures/Animation_conc_V_5000.gif" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/Animation_conc_V_5000.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pictures/MC_tree_prob_list_9_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/MC_tree_prob_list_9_2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RDS_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/RDS_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CI.py" beforeDir="false" afterPath="$PROJECT_DIR$/CI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DLA_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/DLA_constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/DLA_eta_1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Pictures/GS_list_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/GS_list_9_own.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tree.py" beforeDir="false" afterPath="$PROJECT_DIR$/tree.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +44,7 @@
       <recent name="C:\Users\flori\Documents\GitHub\Scientific_comp_2" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.Monte_Carlo">
+  <component name="RunManager" selected="Python.CI (1)">
     <configuration name="CI (1)" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Scientific_comp_2" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -174,10 +173,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Monte_Carlo" />
         <item itemvalue="Python.CI (1)" />
-        <item itemvalue="Python.Gray_Scott" />
         <item itemvalue="Python.tree" />
+        <item itemvalue="Python.Monte_Carlo" />
+        <item itemvalue="Python.Gray_Scott" />
         <item itemvalue="Python.CI" />
       </list>
     </recent_temporary>
