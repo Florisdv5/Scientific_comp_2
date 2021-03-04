@@ -15,7 +15,7 @@ def initialise_conc(fluid, noise=False):
             for y in range(len(grid)):
                 for x in range(len(grid)):
                     if noise:
-                        grid[y][x] = initial_u + initial_u * random.random()
+                        grid[y][x] = initial_u + 0.5 * initial_u * (0.5 - random.random())
                     else:
                         grid[y][x] = initial_u
     elif fluid == "V":
@@ -24,7 +24,7 @@ def initialise_conc(fluid, noise=False):
             for x in range(len(grid)):
                 if 1 / 3 * n_size < y < 2 / 3 * n_size and 1 / 3 * n_size < x < 2 / 3 * n_size:
                     if noise:
-                        grid[y][x] = initial_v + initial_v * random.random()
+                        grid[y][x] = initial_v + 0.5 * initial_v * (0.5 - random.random())
                     else:
                         grid[y][x] = initial_v
     else:

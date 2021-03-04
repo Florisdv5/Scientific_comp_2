@@ -3,6 +3,7 @@ from SOR_funcs import update_SOR, initialise_grid, find_neighbours, concentratio
 import matplotlib.pyplot as plt
 from tqdm import tqdm
 from DLA_constants import n_size, steps, eta, eta_list
+import time
 
 
 def one_step(matrix_structure, matrix_concentration):
@@ -22,18 +23,19 @@ def one_step(matrix_structure, matrix_concentration):
     matrix_structure[added_neighbour[0]][added_neighbour[1]] = 1
     return matrix_structure, matrix_concentration, top_reached
 
-# Question B
 
+# Question B
+#
 # y_values = np.linspace(0, 1, num=n_size + 1)
 # matrix_structure = np.zeros(shape=(n_size, n_size))
 # matrix_structure[0][int(n_size / 2)] = 1
 # matrix_concentration = initialise_grid()
 # step = 0
 # top_reached = False
-# while step < 2000 and top_reached == False:
+# while step < steps and top_reached == False:
 #     matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
 #     step += 1
-#     print(step)
+# print(step)
 # fig = plt.figure()
 # ax = fig.add_subplot(111, axisbelow=True)
 # ax.pcolormesh(y_values, y_values, matrix_structure)
@@ -49,42 +51,59 @@ def one_step(matrix_structure, matrix_concentration):
 
 # Question A
 
-y_values = np.linspace(0, 1, num=n_size + 1)
-fig = plt.figure(figsize=(9, 6))
-axes = fig.subplots(3, 3, sharex=True, sharey=True)
-fig.add_subplot(111, frameon=False)
-plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
-plt.grid(False)
-plt.xlabel("X-value", size=15)
-plt.ylabel("Y-value", size=15)
-axes_num = 0
-step_list = []
-for row in axes:
-    for col in row:
-        eta = eta_list[axes_num]
+# y_values = np.linspace(0, 1, num=n_size + 1)
+# fig = plt.figure(figsize=(9, 6))
+# axes = fig.subplots(3, 3, sharex=True, sharey=True)
+# fig.add_subplot(111, frameon=False)
+# plt.tick_params(labelcolor='none', top=False, bottom=False, left=False, right=False)
+# plt.grid(False)
+# plt.xlabel("X-value", size=15)
+# plt.ylabel("Y-value", size=15)
+# axes_num = 0
+# step_list = []
+# for row in tqdm(axes):
+#     for col in tqdm(row):
+#         eta = eta_list[axes_num]
+#         matrix_structure = np.zeros(shape=(n_size, n_size))
+#         matrix_structure[0][int(n_size / 2)] = 1
+#         matrix_concentration = initialise_grid()
+#         step = 0
+#         top_reached = False
+#         while not top_reached and step < steps:
+#             matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
+#             step += 1
+#         step_list.append(step)
+#         axes_num += 1
+#         print(eta)
+#         col.pcolormesh(y_values, y_values, matrix_structure)
+#         col.set_title(r'$\eta = {}$, steps = {}'.format(round(eta, 3), step))
+#
+# print(step_list)
+#
+# # step_list = [2000, 2000, 2000, 1978, 1642, 1094, 817, 591, 530]
+# plt.savefig("Pictures/DLA_eta_list_9")
+# plt.show()
+# # fig.clear(True)
+# fig = plt.figure(figsize=(9, 6))
+# plt.plot(eta_list, step_list)
+# plt.xlabel('$\eta$')
+# plt.ylabel('Amount of steps')
+# plt.savefig("Pictures/Amount_of_steps_top")
+# plt.show()
+
+step_list_etas = [[], [], [], [], [], [], [], [], []]
+for i in tqdm(range(10)):
+    for eta_values in range(9):
+        eta = eta_list[eta_values]
         matrix_structure = np.zeros(shape=(n_size, n_size))
         matrix_structure[0][int(n_size / 2)] = 1
         matrix_concentration = initialise_grid()
         step = 0
         top_reached = False
-        while top_reached == False:
+        while not top_reached and step < steps:
             matrix_structure, matrix_concentration, top_reached = one_step(matrix_structure, matrix_concentration)
             step += 1
-        step_list.append(step)
-        axes_num += 1
-        print(eta)
-        col.pcolormesh(y_values, y_values, matrix_structure)
-        col.set_title(r'$\eta = {}$'.format(round(eta, 3)))
-
-print(step_list)
-plt.savefig("Pictures/DLA_eta_list_9")
-plt.show()
-fig.clear(True)
-fig = plt.figure(figsize=(9, 6))
-plt.plot(eta_list, step_list)
-plt.xlabel('$\eta$')
-plt.ylabel('Amount of steps', size = 15)
-plt.savefig("Pictures/Amount_of_steps_top", size = 15)
-plt.show()
-
-
+        step_list_etas[eta_values].append(step)
+path = 'Archives/saved_step_list_eta_{0}.npy'.format(int(time.time()))
+with open(path, 'ab') as f:
+    np.save(f, step_list_etas)
