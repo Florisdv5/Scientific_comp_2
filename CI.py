@@ -39,17 +39,17 @@ def figure_CI(list_given, reference_list, save_fig=False, path_given="Pictures/f
     plt.show()
 
 
-# path = 'Archives/saved_step_list_eta_1614851012.npy'
-# with open(path, 'rb') as f:
-#     step_list_eta = np.load(f, allow_pickle=True)[()]
-# figure_CI(step_list_eta, eta_list, save_fig=True, path_given="figure_step_list_CI_eta", x_label=r'$\eta$')
-
-path = 'Archives/saved_step_list_prob_s_1614865598.npy'
+path = 'Archives/saved_step_list_eta_1614939981.npy'
 with open(path, 'rb') as f:
-    step_list_prob_s = np.load(f, allow_pickle=True)[()]
-# new_array = np.array([[690, 845, 682, 804, 840, 780, 978, 682, 862, 916]])
-# step_list_prob_s = np.concatenate((step_list_prob_s, new_array), axis=0)
-# print(step_list_prob_s)
-# prob_s_list.append(1)
-figure_CI(step_list_prob_s, prob_s_list, save_fig=True, path_given="figure_step_list_CI_prob_s_with_1",
-          x_label=r'$p_s$')
+    step_list_eta = np.load(f, allow_pickle=True)[()]
+figure_CI(step_list_eta, eta_list, save_fig=True, path_given="figure_step_list_CI_eta", x_label=r'$\eta$')
+#
+# path = 'Archives/saved_step_list_prob_s_1614865598.npy'
+# with open(path, 'rb') as f:
+#     step_list_prob_s = np.load(f, allow_pickle=True)[()]
+# # new_array = np.array([[690, 845, 682, 804, 840, 780, 978, 682, 862, 916]])
+# # step_list_prob_s = np.concatenate((step_list_prob_s, new_array), axis=0)
+# # print(step_list_prob_s)
+# # prob_s_list.append(1)
+# figure_CI(step_list_prob_s, prob_s_list, save_fig=True, path_given="figure_step_list_CI_prob_s_with_1",
+#           x_label=r'$p_s$')
