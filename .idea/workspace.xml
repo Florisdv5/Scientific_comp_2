@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1f8fc93c-d217-4414-a264-ac4849c0b488" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CI.py" beforeDir="false" afterPath="$PROJECT_DIR$/CI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pictures/GS_list_9.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/GS_list_9_paper.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pictures/figure_step_list_CI_eta.png" beforeDir="false" afterPath="$PROJECT_DIR$/Pictures/figure_step_list_CI_eta.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/RDS_constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/RDS_constants.py" afterDir="false" />
-    </list>
+    <list default="true" id="1f8fc93c-d217-4414-a264-ac4849c0b488" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
