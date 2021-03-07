@@ -8,15 +8,14 @@ import time
 
 def one_step(matrix_structure, matrix_concentration):
     difference = 1
-    iterations = -1
     while difference > epsilon and iterations < 100:
         old_matrix_concentration = matrix_concentration.copy()
         matrix_concentration = update_SOR(matrix_structure, matrix_concentration)
         difference = max_difference(matrix_concentration, old_matrix_concentration)
         iterations += 1
-
     neighbours, top_reached = find_neighbours(matrix_structure)
     neighbours_conc = concentration_neighbours(neighbours, matrix_concentration)
+
     sum_candidates_conc = 0
     for i in range(len(neighbours_conc)):
         sum_candidates_conc += neighbours_conc[i] ** eta
@@ -31,7 +30,7 @@ def one_step(matrix_structure, matrix_concentration):
 
 
 # Question B
-
+#
 # y_values = np.linspace(0, 1, num=n_size + 1)
 # matrix_structure = np.zeros(shape=(n_size, n_size))
 # matrix_structure[0][int(n_size / 2)] = 1
@@ -82,10 +81,12 @@ def one_step(matrix_structure, matrix_concentration):
 #         axes_num += 1
 #         print(eta)
 #         col.pcolormesh(y_values, y_values, matrix_structure)
-#         col.set_title(r'$\eta = {}$'.format(round(eta, 3)))
+#         col.set_title(r'$\eta = {}$, steps = {}'.format(round(eta, 3), step))
 #
 # print(step_list)
-# plt.savefig("Pictures/DLA_eta_list_9_2")
+#
+# # step_list = [2000, 2000, 2000, 1978, 1642, 1094, 817, 591, 530]
+# plt.savefig("Pictures/DLA_eta_list_9")
 # plt.show()
 # # fig.clear(True)
 # fig = plt.figure(figsize=(9, 6))
@@ -94,9 +95,6 @@ def one_step(matrix_structure, matrix_concentration):
 # plt.ylabel('Amount of steps')
 # plt.savefig("Pictures/Amount_of_steps_top")
 # plt.show()
-
-
-# Data for CI
 
 step_list_etas = [[], [], [], [], [], [], [], [], []]
 for i in tqdm(range(10)):
